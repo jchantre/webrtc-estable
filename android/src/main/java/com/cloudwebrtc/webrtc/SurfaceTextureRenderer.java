@@ -111,22 +111,27 @@ public class SurfaceTextureRenderer extends EglRenderer {
 
   private TextureRegistry.SurfaceProducer producer;
 
- public void surfaceCreated(final TextureRegistry.SurfaceProducer producer) {
-    ThreadUtils.checkIsOnMainThread();
-    this.producer = producer;
-    this.producer.setCallback(
-        new TextureRegistry.SurfaceProducer.Callback() {
-            @Override
-            public void onSurfaceAvailable() {
-                // Lógica opcional o vacía
-            }
-
-            @Override
-            public void onSurfaceDestroyed() {
-                surfaceDestroyed();
-            }
+public void surfaceCreated(final TextureRegistry.SurfaceProducer producer) {
+  ThreadUtils.checkIsOnMainThread();
+  this.producer = producer;
+  this.producer.setCallback(
+    new TextureRegistry.SurfaceProducer.Callback() {
+      @Override
+      public void onSurfaceCreated() {
+        // Aquí puedes inicializar la superficie si lo requieres.
+        // Por ejemplo, si aún no se ha creado la EGLSurface, podrías hacerlo:
+        if (surface == null) {
+          // Si deseas, podrías llamar a createEglSurface(producer.getSurface()) aquí,
+          // o dejarlo vacío si no necesitas ninguna acción inmediata.
         }
-    );
+      }
+      
+      @Override
+      public void onSurfaceDestroyed() {
+        surfaceDestroyed();
+      }
+    }
+  );
 }
 
   public void surfaceDestroyed() {
