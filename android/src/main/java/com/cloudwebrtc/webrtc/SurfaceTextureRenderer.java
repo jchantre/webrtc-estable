@@ -9,6 +9,7 @@ import org.webrtc.GlRectDrawer;
 import org.webrtc.RendererCommon;
 import org.webrtc.ThreadUtils;
 import org.webrtc.VideoFrame;
+import androidx.annotation.NonNull;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -122,7 +123,6 @@ public void surfaceCreated(final TextureRegistry.SurfaceProducer producer) {
         new TextureRegistry.SurfaceProducer.Callback() {
             @Override
             public void onSurfaceCreated(@NonNull Surface surface) {
-                // Handle surface creation (if needed)
                 SurfaceTextureRenderer.this.surface = surface;
                 createEglSurface(surface);
             }
