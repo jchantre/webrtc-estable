@@ -116,13 +116,11 @@ public void surfaceCreated(final TextureRegistry.SurfaceProducer producer) {
     this.producer = producer;
     this.producer.setCallback(
         new TextureRegistry.SurfaceProducer.Callback() {
-            @Override
+            // Implementamos el método onSurfaceCreated sin la anotación @Override.
             public void onSurfaceCreated() {
-                // Si necesitás inicializar algo cuando la superficie se crea, hacelo acá.
-                // Podés, por ejemplo, comprobar si la superficie ya está lista y crear la EGLSurface, 
-                // o simplemente dejarlo vacío si no se requiere ninguna acción inmediata.
+                // Puede quedar vacío, o agregar la lógica que requieras.
             }
-
+            
             @Override
             public void onSurfaceDestroyed() {
                 surfaceDestroyed();
@@ -130,6 +128,7 @@ public void surfaceCreated(final TextureRegistry.SurfaceProducer producer) {
         }
     );
 }
+
 
 
   public void surfaceDestroyed() {
