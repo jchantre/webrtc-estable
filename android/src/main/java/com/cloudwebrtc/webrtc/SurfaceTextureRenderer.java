@@ -118,21 +118,24 @@ public void surfaceCreated(final TextureRegistry.SurfaceProducer producer) {
     ThreadUtils.checkIsOnMainThread();
     this.producer = producer;
     this.producer.setCallback(
-      new TextureRegistry.SurfaceProducer.Callback() {
-          @Override
-          public void onSurfaceCreated(SurfaceTexture surfaceTexture) {
-              // Aquí puedes inicializar la superficie si es necesario.
-              // Por ejemplo, si la EGLSurface aún no se ha creado, podrías hacer:
-              // if (surface == null) { createEglSurface(producer.getSurface()); }
-          }
+        new TextureRegistry.SurfaceProducer.Callback() {
+            @Override
+            public void onSurfaceCreated(Surface surface) {
+                // Puedes inicializar la superficie aquí, por ejemplo:
+                // if (SurfaceTextureRenderer.this.surface == null) {
+                //     Surface s = producer.getSurface();
+                //     createEglSurface(s);
+                // }
+            }
 
-          @Override
-          public void onSurfaceDestroyed() {
-              surfaceDestroyed();
-          }
-      }
+            @Override
+            public void onSurfaceDestroyed() {
+                surfaceDestroyed();
+            }
+        }
     );
 }
+
 
 
 
